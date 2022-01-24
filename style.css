@@ -1,0 +1,55 @@
+body {
+ font-family: montserrat, sans-serif;
+ font-size: 1rem;
+ line-height: 1.4;
+ color: rgb(46, 46, 46);
+}
+
+.flex-vertical-center {
+    display: flex;
+    flex-direction: column;
+}
+.flexbox-horizontal-space-between{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.container-medium {
+    width: 54rem;
+    margin: auto;
+}
+
+h1 { 
+    font-size: 4rem;
+}
+h2 {
+    font-size: 2.5rem;
+}
+
+.align-text-center{
+    text-align: center;
+}
+button {
+    height: 3rem;
+    width: 20rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 40px rgb(193, 193, 193, 20);
+}
+.color-background-purple{
+    background-color: purple;
+}
+.color-background-yellow{
+    background-color: yellow;
+}
+.text-color-white{
+    color: white;
+}
+.text-color-black{
+    color:black;
+}
+.text-bold{
+    font-weight: bold;
+}
