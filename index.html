@@ -1,51 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Let's play!</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="container-medium align-text-center">
-            <h1>La meva aventura</h1>
-        </div>
+      <div class="container-medium align-text-center">
+        <h1>La meva aventura</h1>
+      </div>
     </header>
     <main>
-        <section>
-             <div class="container-medium flexbox-vertical-center">
-                <p class="text align-text-center">.</p>
-                <h2 class="align-text-center">Vols continuar amb el expeiment?</h2>
-            </div>
-            <div class="container-medium">
-                 <div class ="flexbox-horizontal-space-between">
-                    <button class="color-background-purple text-color-white text-bold">No :(</button>
-                    <button class="color-background-yellow text-color-black text-bold">Si! :)</button>
-                </div>
-            </div>
-        </section>
+      <section>
+        <div class="container-medium flexbox-vertical-center">
+          <p id="paragraphStory" class="text align-text-center">¿Funciona?</p>
+          <h2 class="align-text-center">Vols continuar amb el expeiment?</h2>
+        </div>
+        <div class="container-medium">
+          <div class="flexbox-horizontal-space-between">
+            <button
+              onclick="ferNo()"
+              class="color-background-purple text-color-white text-bold"
+            >
+              No :(
+            </button>
+            <button
+              onclick="ferSi()"
+              class="color-background-yellow text-color-black text-bold"
+            >
+              Si! :)
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
-</body>
-<script>
-    let historia = [
-        { text: "Aquest és una historia que hem de fer per poder experimentar amnb condicions" }, 
-        { text: "continuem" }
-        ];
-        
-    let pagina = 0;
-    let text = document.querySelector(".text");
-    text.textContent = historia[pagina].text;
-      
+  </body>
+  <script>
+    let historia = {
+      si: {
+        10: "No lo toques.",
+        11: "¡¡¡Burro!!!, ¿Lo sabe alguien?",
+        12: "La has cagao, ¿puedes culpar a otro?",
+        13: "¡Sin problema!",
+      },
+      no: {
+        10: "¿Lo has tocado?",
+        11: "¿Nos darà problemas?",
+        12: "Lánzalo",
+        112: "Escóndelo, sin problema",
+      },
+    };
+
+    let i = 9;
+    let text = document.querySelector("#paragraphStory");
+    text.textContent = historia[pagina].question;
+
     function ferSi() {
-        pagina = pagina + 1;
-        text.textContent = historia[pagina].text;
+      i++, (text.textContent = historia.si[i]);
     }
 
     function ferNo() {
-        pagina = pagina - 1;
-        text.textContent = historia[pagina].text;
+      i++;
+      if (i === 13) {
+          console.log(i)
+          i--;
+          text.textContent = historia.si[i];
+      } else {
+        text.textContent = historia.no[i];
+      }
     }
-</script>
+  </script>
 </html>
