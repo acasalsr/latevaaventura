@@ -8,18 +8,20 @@
     <title>Let's play!</title>
   </head>
   <body>
-    <header>
-      <div class="container-medium align-text-center">
+    <div id="pageCounter" class="circle">
+        <p id="pageNumberId" class="text-font-regular text-color-white"></p>
+    </div>
+    <header id="section-header" class="flex-vertical-center">
+      <div class="container-medium align-text-center margin-vertical margin-medium">
         <h1>La meva aventura</h1>
       </div>
     </header>
     <main>
       <section>
         <div class="container-medium flexbox-vertical-center">
-          <p id="paragraphStory" class="text align-text-center">¿Funciona?</p>
-          <h2 class="align-text-center">Vols continuar amb el expeiment?</h2>
+          <h2 id="paragraphStory" class="text align-text-center">¿Funciona?</h2>
         </div>
-        <div class="container-medium">
+        <div class="container-medium margin-vertical margin-medium">
           <div class="flexbox-horizontal-space-between">
             <button
               onclick="ferNo()"
@@ -51,15 +53,21 @@
         11: "¿Nos darà problemas?",
         12: "Lánzalo",
         112: "Escóndelo, sin problema",
-      },
+      }
     };
 
     let i = 9;
+    let pageNumber = 0;
     let text = document.querySelector("#paragraphStory");
     text.textContent = historia[pagina].question;
+    
+    let pageNumberElement = document.querySelector("#pageNumberId");
+    pageNumberElement.textContent = pageNumber;
 
     function ferSi() {
       i++, (text.textContent = historia.si[i]);
+      pageNumber++;
+      pageNumberElement.textContent = pageNumber;
     }
 
     function ferNo() {
@@ -72,5 +80,7 @@
         text.textContent = historia.no[i];
       }
     }
+    pageNumber++;
+    pageNumberElement.textContent = pageNumber;
   </script>
 </html>
