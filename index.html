@@ -8,37 +8,67 @@
     <title>Let's play!</title>
   </head>
   <body>
-    <div id="pageCounter" class="circle">
-        <p id="pageNumberId" class="text-font-regular text-color-white"></p>
-    </div>
-    <header id="section-header" class="flex-vertical-center">
-      <div class="container-medium align-text-center margin-vertical margin-medium">
-        <h1>La meva aventura</h1>
+    <div class="container-medium flexbox-horizontal margin-medium padding-medium">
+      <!-- primer wrapper -->
+      <div class="wrapper">
+        <header id="section-header" class="flex-vertical-center">
+          <div
+            class="wrapper align-text-center"
+          >
+            <h1>La meva aventura</h1>
+          </div>
+        </header>
+        <main>
+          <section>
+            <div class="wrapper flexbox-vertical-center">
+              <h2 id="paragraphStory" class="text align-text-center">
+                ¿Funciona?
+              </h2>
+            </div>
+            <div class="wrapper">
+              <div class="flexbox-horizontal margin-top margin-medium">
+                <button
+                  onclick="ferNo()"
+                  class="color-background-purple text-color-white text-bold"
+                >
+                  No :(
+                </button>
+                <button
+                  onclick="ferSi()"
+                  class="color-background-yellow text-color-black text-bold"
+                >
+                  Si! :)
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
       </div>
-    </header>
-    <main>
-      <section>
-        <div class="container-medium flexbox-vertical-center">
-          <h2 id="paragraphStory" class="text align-text-center">¿Funciona?</h2>
-        </div>
-        <div class="container-medium margin-vertical margin-medium">
-          <div class="flexbox-horizontal-space-between">
-            <button
-              onclick="ferNo()"
-              class="color-background-purple text-color-white text-bold"
-            >
-              No :(
-            </button>
-            <button
-              onclick="ferSi()"
-              class="color-background-yellow text-color-black text-bold"
-            >
-              Si! :)
-            </button>
+      <!-- segon wrapper -->
+      <!--
+      <div class="wrapper container-small">
+        <div class="wrapper color-background-grey flex-vertical-left-algin">
+          <div class="wrapper">
+            <div class="wrapper flex-vertical-left-algin">
+              <h3>Quin és el teu nom?</h3>
+            </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+      -->
+      <!-- tercer wrapper -->
+      <div class="flex-vertical-center"> 
+        <div class="wrapper-circle">
+          <div class="circle">
+            <p id="pageNumberId" class="text-font-regular text-color-white"></p>
+          </div>
+        </div>
+        <div>
+          <h3 id="yourName"></h3>
+          <p id="pathTrack"></p>
+        </div>
+      </div>
+    </div>
   </body>
   <script>
     let historia = {
@@ -53,34 +83,46 @@
         11: "¿Nos darà problemas?",
         12: "Lánzalo",
         112: "Escóndelo, sin problema",
-      }
+      },
     };
 
     let i = 9;
     let pageNumber = 0;
-    let text = document.querySelector("#paragraphStory");
+    let name = prompt("com et dius?");
+    let nameId = document.querySelector("#yourName");
+    nameId.textContent = name;
     
+    let path = [];
+    let pathId = document.querySelector("#pathTrack");
+
+    let text = document.querySelector("#paragraphStory");
+  
     let pageNumberElement = document.querySelector("#pageNumberId");
-    console.log(pageNumberElement);
     pageNumberElement.textContent = pageNumber;
+
 
     function ferSi() {
       i++, (text.textContent = historia.si[i]);
       pageNumber++;
       pageNumberElement.textContent = pageNumber;
+      path.push(pageNumber);
+      pathId.textContent = path;
     }
 
     function ferNo() {
       i++;
       if (i === 13) {
-          console.log(i)
-          i--;
-          text.textContent = historia.si[i];
+        console.log(i);
+        i--;
+        text.textContent = historia.si[i];
       } else {
         text.textContent = historia.no[i];
       }
+      pageNumber++;
+      pageNumberElement.textContent = pageNumber;
+      path.push(pageNumber);
+      pathId.textContent = path;
     }
-    pageNumber++;
-    pageNumberElement.textContent = pageNumber;
+    
   </script>
 </html>
