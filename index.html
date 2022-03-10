@@ -8,13 +8,13 @@
     <title>Let's play!</title>
   </head>
   <body>
-    <div class="container-medium flexbox-horizontal margin-medium padding-medium">
+    <div
+      class="container-medium flexbox-horizontal margin-medium padding-medium"
+    >
       <!-- primer wrapper -->
       <div class="wrapper">
         <header id="section-header" class="flex-vertical-center">
-          <div
-            class="wrapper align-text-center"
-          >
+          <div class="wrapper align-text-center">
             <h1>La meva aventura</h1>
           </div>
         </header>
@@ -44,20 +44,7 @@
           </section>
         </main>
       </div>
-      <!-- segon wrapper -->
-      <!--
-      <div class="wrapper container-small">
-        <div class="wrapper color-background-grey flex-vertical-left-algin">
-          <div class="wrapper">
-            <div class="wrapper flex-vertical-left-algin">
-              <h3>Quin és el teu nom?</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
-      <!-- tercer wrapper -->
-      <div class="flex-vertical-center"> 
+      <div class="flex-vertical-center">
         <div class="wrapper-circle">
           <div class="circle">
             <p id="pageNumberId" class="text-font-regular text-color-white"></p>
@@ -73,8 +60,9 @@
   <script>
     let historia = {
       si: {
-        10: "No lo toques.",
+        10: "No lo toques. Escóndelo, sin problema",
         11: "¡¡¡Burro!!!, ¿Lo sabe alguien?",
+        11.5: "Gracias",
         12: "La has cagao, ¿puedes culpar a otro?",
         13: "¡Sin problema!",
       },
@@ -82,7 +70,7 @@
         10: "¿Lo has tocado?",
         11: "¿Nos darà problemas?",
         12: "Lánzalo",
-        112: "Escóndelo, sin problema",
+        13: "Escóndelo sin problema",
       },
     };
 
@@ -91,18 +79,36 @@
     let name = prompt("com et dius?");
     let nameId = document.querySelector("#yourName");
     nameId.textContent = name;
-    
+
     let path = [];
     let pathId = document.querySelector("#pathTrack");
 
     let text = document.querySelector("#paragraphStory");
-  
+
     let pageNumberElement = document.querySelector("#pageNumberId");
     pageNumberElement.textContent = pageNumber;
 
-
     function ferSi() {
-      i++, (text.textContent = historia.si[i]);
+      i++;
+      if (i === 10) {
+        return (
+          (text.textContent = historia.si[i]),
+          (i = i + 0.5),
+          pageNumber++,
+          (pageNumberElement.textContent = pageNumber),
+          path.push(pageNumber),
+          (pathId.textContent = path)
+        );
+      } else if (i === 11.5) {
+        return (
+          (text.textContent = historia.si[i]),
+          pageNumber++,
+          (pageNumberElement.textContent = pageNumber),
+          path.push(pageNumber),
+          (pathId.textContent = path)
+        );
+      }
+      text.textContent = historia.si[i];
       pageNumber++;
       pageNumberElement.textContent = pageNumber;
       path.push(pageNumber);
@@ -112,17 +118,13 @@
     function ferNo() {
       i++;
       if (i === 13) {
-        console.log(i);
-        i--;
-        text.textContent = historia.si[i];
-      } else {
-        text.textContent = historia.no[i];
+        return (text.textContent = historia.no[i]);
       }
+      text.textContent = historia.no[i];
       pageNumber++;
       pageNumberElement.textContent = pageNumber;
       path.push(pageNumber);
       pathId.textContent = path;
     }
-    
   </script>
 </html>
